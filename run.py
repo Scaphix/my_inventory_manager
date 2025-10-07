@@ -1,3 +1,5 @@
+from colorama import Fore, Back, Style
+
 """
 Wecome function
 """
@@ -6,14 +8,16 @@ Wecome function
 def tasks_list():
     program_running = True
     while program_running:
-        print("Welcome to the Inventory Managment tool")
+        print(Back.BLUE + "Welcome to the Inventory Managment tool")
+        print(Style.RESET_ALL)
         print("---------------------------------------")
         print("Please select one of the following tasks:\n")
-        print("[1] Add item")
+        print(Fore.MAGENTA + "[1] Add item")
         print("[2] Update item")
         print("[3] Display item")
         print("[4] Delete item")
         print("[5] EXIT\n")
+        print(Style.RESET_ALL)
         selected_task = input("Select task : ")
         print(f"your selection is: {selected_task}")
         go_on = my_task(selected_task)
