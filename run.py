@@ -1,14 +1,11 @@
 from colorama import Fore, Back, Style
 
-"""
-Wecome function
-"""
-
 
 def tasks_list():
+    """Wecome function"""
     program_running = True
     while program_running:
-        print(Back.BLUE + "Welcome to the Inventory Managment tool")
+        print(Back.BLUE + "\n Welcome to the Inventory Managment tool")
         print(Style.RESET_ALL)
         print("---------------------------------------")
         print("Please select one of the following tasks:\n")
@@ -16,12 +13,11 @@ def tasks_list():
         print("[2] Update item")
         print("[3] Display item")
         print("[4] Delete item")
-        print("[5] EXIT\n")
-        print(Style.RESET_ALL)
+        print("[5] EXIT\n" + Style.RESET_ALL)
         selected_task = input("Select task : ")
         print(f"your selection is: {selected_task}")
         go_on = my_task(selected_task)
-        if go_on is False:
+        if not go_on:
             break
 
 
@@ -47,11 +43,17 @@ def my_task(selected_task):
 
 
 def add_item():
-    my_file = []
-    print("Add Item to the list")
-    item = input("What is the name of the item: ")
-    my_file.append(item)
-    print(my_file)
+    items = []
+    """Add a new item to the global list"""
+    id = input("Enter item ID: ").strip()
+    name = input("Enter item name: ").strip()
+    description = input("Enter item description: ").strip()
+    price = input("Enter item price: $").strip()
+
+    my_item = [id, name, description, price]
+    items.append(my_item)
+    print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
+    print(f"[{id}] - {name} - {description} - ${price}")
 
 
 def update_item():
