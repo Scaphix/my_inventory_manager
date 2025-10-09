@@ -1,6 +1,7 @@
 from colorama import Fore, Back, Style
 from inventory import Inventory
 
+
 inventory = Inventory()
 
 
@@ -26,6 +27,9 @@ def tasks_list():
 
 def my_task(selected_task):
     if selected_task == "1":
+        print("\033c", end="")
+        print(Fore.BLUE + Style.BRIGHT + "\n--- Add a New Item ---")
+        print(Style.RESET_ALL)
         while True:
             inventory.add_item()
             more = input("Add another item? (y/n:) ").strip().lower()
@@ -33,14 +37,16 @@ def my_task(selected_task):
                 break
 
     elif selected_task == "2":
+        print("\033c", end="")
         inventory.update_item()
 
     elif selected_task == "3":
+        print("\033c", end="")
         inventory.display_item()
 
     elif selected_task == "4":
-        name = input("Which item do you want to remove? ")
-        inventory.delete_item(name)
+        print("\033c", end="")
+        inventory.delete_item()
 
     elif selected_task == "5":
         print(" Exiting the program .... Goodbye !")

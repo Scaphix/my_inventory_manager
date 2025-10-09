@@ -50,7 +50,8 @@ class Inventory:
         sorted_items = sorted(self.items, key=lambda item: item.id)
 
         print("Loading items....\n")
-        print(Back.MAGENTA + "=== INVENTORY LIST ===" + Style.RESET_ALL)
+        print(Back.MAGENTA + "=" * 13 + "INVENTORY LIST" + "=" * 13)
+        print(Style.RESET_ALL)
         print("-" * 40)
         for i, item in enumerate(sorted_items, start=1):
             print(item)
@@ -59,6 +60,7 @@ class Inventory:
 
     @check_inventory_not_empty
     def delete_item(self, name):
+        name = input("Which item do you want to remove? ")
         for item in self.items:
             if item.name.lower() == name.lower():
                 self.items.remove(item)
