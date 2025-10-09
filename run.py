@@ -24,6 +24,27 @@ class Inventory:
         new_item = Item(id, name, quantity, price)
         self.items.append(new_item)
         print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
+        
+    def display_item(self):
+        """Display all items in the inventory list, sorted by ID"""
+        if not self.items:
+            print(Fore.YELLOW + "\n No items in the inventory!" + Style.RESET_ALL)
+            return
+
+        # Sorting the list of dictionaries by the 'id' key
+        sorted_items = sorted(self.items, key=lambda item: item.id)
+
+        print("Loading items....\n")
+        print(Back.CYAN + Fore.BLACK + "\n  Inventory List" + Style.RESET_ALL)
+        print("-" * 40)
+        for i, item in enumerate(sorted_items, start=1):
+            print(Fore.MAGENTA + f"Item: {item.id}" + Style.RESET_ALL)
+            print(f"  Name: {item.name}")
+            print(f"  Quantity: {item.quantity}")
+            print(f"  Price: ${item.price}")
+            print("-" * 40)
+
+        print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
 
 inventory = Inventory()
@@ -58,13 +79,13 @@ def my_task(selected_task):
                 break
 
     elif selected_task == "2":
-        update_item()
+        print("Update Item to the list")
 
     elif selected_task == "3":
         inventory.display_item()
 
     elif selected_task == "4":
-        delete_item()
+        print("delete Item to the list")
 
     elif selected_task == "5":
         print(" Exiting the program .... Goodbye !")
@@ -72,14 +93,6 @@ def my_task(selected_task):
     else:
         print("Invalid selection. Please choose 1-5.")
     return True
-
-
-def update_item():
-    print("Update Item to the list")
-
-
-def delete_item():
-    print("delete Item to the list")
 
 
 task = tasks_list()
