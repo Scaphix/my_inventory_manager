@@ -46,7 +46,9 @@ def my_task(selected_task):
 
     elif selected_task == "4":
         print("\033c", end="")
-        inventory.delete_item()
+        print("Please enter the name of the item to delete ")
+        name_to_delete = input(" Enter Name: ").strip()
+        inventory.delete_item(name_to_delete)
 
     elif selected_task == "5":
         print(" Exiting the program .... Goodbye !")

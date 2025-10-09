@@ -60,7 +60,6 @@ class Inventory:
 
     @check_inventory_not_empty
     def delete_item(self, name):
-        name = input("Which item do you want to remove? ")
         for item in self.items:
             if item.name.lower() == name.lower():
                 self.items.remove(item)
