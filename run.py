@@ -42,18 +42,30 @@ def my_task(selected_task):
     return True
 
 
-def add_item():
-    items = []
-    """Add a new item to the global list"""
-    id = input("Enter item ID: ").strip()
-    name = input("Enter item name: ").strip()
-    description = input("Enter item description: ").strip()
-    price = input("Enter item price: $").strip()
+items = []
 
-    my_item = [id, name, description, price]
-    items.append(my_item)
-    print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
-    print(f"[{id}] - {name} - {description} - ${price}")
+
+def add_item():
+    """Add a new item to the global list"""
+    while True:
+        id = input("Enter item ID: ").strip()
+        name = input("Enter item name: ").strip()
+        quantity = input("Enter item quantity: ").strip()
+        price = input("Enter item price: $").strip()
+
+        my_item = {
+            "id": id,
+            "name": name,
+            "quantity": quantity,
+            "price": price
+            }
+        items.append(my_item)
+        print(Fore.GREEN + "\nItem added successfully!" + Style.RESET_ALL)
+        more = input("Add another item? (y/n): ").strip().lower()
+        if more != "y":
+            break
+
+    return items
 
 
 def update_item():
@@ -61,7 +73,8 @@ def update_item():
 
 
 def display_item():
-    print("display Item to the list")
+    print("Loading items....\n")
+    print(items)
 
 
 def delete_item():
