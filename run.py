@@ -73,8 +73,25 @@ def update_item():
 
 
 def display_item():
+    """Display all items in the inventory list, sorted by ID"""
+    if not items:
+        print(Fore.YELLOW + "\n No items in the inventory!" + Style.RESET_ALL)
+        return
+
+    # Sorting the list of dictionaries by the 'id' key
+    sorted_items = sorted(items, key=lambda x: x["id"])
+
     print("Loading items....\n")
-    print(items)
+    print(Back.CYAN + Fore.BLACK + "\n  Inventory List" + Style.RESET_ALL)
+    print("-" * 40)
+    for i, item in enumerate(sorted_items, start=1):
+        print(Fore.MAGENTA + f"Item: {item['id']}" + Style.RESET_ALL)
+        print(f"  Name: {item['name']}")
+        print(f"  Quantity: {item['quantity']}")
+        print(f"  Price: ${item['price']}")
+        print("-" * 40)
+
+    print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
 
 def delete_item():
