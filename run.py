@@ -1,6 +1,34 @@
 from colorama import Fore, Back, Style
 
 
+class Item:
+    """Represents a single item in the inventory."""
+    def __init__(self, id, name, quantity, price):
+        self.id = id
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+
+
+class Inventory:
+    """Manages a list of Item objects."""
+    def __init__(self):
+        self.items = []
+
+    def add_item(self):
+        id = input("Enter item ID: ").strip()
+        name = input("Enter item name: ").strip()
+        quantity = input("Enter item quantity: ").strip()
+        price = input("Enter item price: $").strip()
+
+        new_item = Item(id, name, quantity, price)
+        self.items.append(new_item)
+        print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
+
+
+inventory = Inventory()
+
+
 def tasks_list():
     """Wecome function"""
     program_running = True
@@ -23,13 +51,17 @@ def tasks_list():
 
 def my_task(selected_task):
     if selected_task == "1":
-        add_item()
+        while True:
+            inventory.add_item()
+            more = input("Add another item? (y/n:) ").strip().lower()
+            if more != "y":
+                break
 
     elif selected_task == "2":
         update_item()
 
     elif selected_task == "3":
-        display_item()
+        inventory.display_item()
 
     elif selected_task == "4":
         delete_item()
@@ -42,56 +74,8 @@ def my_task(selected_task):
     return True
 
 
-items = []
-
-
-def add_item():
-    """Add a new item to the global list"""
-    while True:
-        id = input("Enter item ID: ").strip()
-        name = input("Enter item name: ").strip()
-        quantity = input("Enter item quantity: ").strip()
-        price = input("Enter item price: $").strip()
-
-        my_item = {
-            "id": id,
-            "name": name,
-            "quantity": quantity,
-            "price": price
-            }
-        items.append(my_item)
-        print(Fore.GREEN + "\nItem added successfully!" + Style.RESET_ALL)
-        more = input("Add another item? (y/n): ").strip().lower()
-        if more != "y":
-            break
-
-    return items
-
-
 def update_item():
     print("Update Item to the list")
-
-
-def display_item():
-    """Display all items in the inventory list, sorted by ID"""
-    if not items:
-        print(Fore.YELLOW + "\n No items in the inventory!" + Style.RESET_ALL)
-        return
-
-    # Sorting the list of dictionaries by the 'id' key
-    sorted_items = sorted(items, key=lambda x: x["id"])
-
-    print("Loading items....\n")
-    print(Back.CYAN + Fore.BLACK + "\n  Inventory List" + Style.RESET_ALL)
-    print("-" * 40)
-    for i, item in enumerate(sorted_items, start=1):
-        print(Fore.MAGENTA + f"Item: {item['id']}" + Style.RESET_ALL)
-        print(f"  Name: {item['name']}")
-        print(f"  Quantity: {item['quantity']}")
-        print(f"  Price: ${item['price']}")
-        print("-" * 40)
-
-    print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
 
 def delete_item():
