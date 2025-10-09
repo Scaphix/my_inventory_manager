@@ -224,6 +224,30 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 > [!NOTE]  
 > For all testing, please refer to the [TESTING.md](TESTING.md) file.
 
+## Bugs
+
+* Bug 1:
+ ![](document/bug1.png)
+
+Description: I called a method without passing any argument.
+
+```python
+    elif selected_task == "4":
+
+        inventory.delete_item()
+```
+Correction:
+
+```python
+    elif selected_task == "4":
+
+        name_to_delete = input(" Enter Name: ").strip()
+
+        inventory.delete_item(name_to_delete)
+```
+
+
+
 ## Deployment
 
 Code Institute has provided a [template](https://github.com/Code-Institute-Org/python-essentials-template) to display the terminal view of this backend application in a modern web browser. This is to improve the accessibility of the project to others.
