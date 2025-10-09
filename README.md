@@ -226,17 +226,26 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 
 ## Bugs
 
-* Bug 1:
+**Bug 1**:
+
+**Description**: I deployed the project to Heroku without including all required dependencies in the requirements.txt file. 
+
+**Correction**: This caused an error where Heroku could not recognize the 'colorama' module. 
+Added the missing dependencies to fix the deployment issue.
+
+
+**Bug 2**:
+
  ![](document/bug1.png)
 
-Description: I called a method without passing any argument.
+**Description**: I called a method without passing any argument.
 
 ```python
     elif selected_task == "4":
 
         inventory.delete_item()
 ```
-Correction:
+**Correction**:
 
 ```python
     elif selected_task == "4":
