@@ -12,7 +12,7 @@ def tasks_list():
         print(Style.RESET_ALL)
         print("---------------------------------------")
         print("Please select one of the following tasks:\n")
-        print(Fore.BLUE + "[1] Add item")
+        print(Fore.BLUE + Style.BRIGHT + "[1] Add item")
         print("[2] Update item")
         print("[3] Display item")
         print("[4] Delete item")

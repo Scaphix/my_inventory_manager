@@ -42,12 +42,8 @@ class Inventory:
         print(Back.MAGENTA + "=== INVENTORY LIST ===" + Style.RESET_ALL)
         print("-" * 40)
         for i, item in enumerate(sorted_items, start=1):
-            print(Fore.MAGENTA + f"Item: {item.id}" + Style.RESET_ALL)
-            print(f"  Name: {item.name}")
-            print(f"  Quantity: {item.quantity}")
-            print(f"  Price: ${item.price}")
+            print(item)
             print("-" * 40)
-
         print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
     def delete_item(self, name):

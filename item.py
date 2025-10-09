@@ -21,4 +21,8 @@ class Item:
         self.price = price
 
     def __str__(self):
-        return f"{self.name} | Qty: {self.quantity} | Price: ${self.price:.2f}"
+        id1 = self.id
+        name1 = self.name
+        qt1 = self.quantity
+        price1 = self.price
+        return f"{id1:<2} | {name1:<10} | {qt1:>4} | ${price1:>5}"
