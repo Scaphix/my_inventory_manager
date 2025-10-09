@@ -7,94 +7,31 @@ Developer: Chahinez Boutemine ([Scaphix](https://www.github.com/Scaphix))
 [![GitHub repo size](https://img.shields.io/github/repo-size/Scaphix/my_inventory_manager)](https://www.github.com/Scaphix/my_inventory_manager)
 [![badge](https://img.shields.io/badge/deployment-Heroku-purple)](https://my-inventory-manager-17f3f6d5a838.herokuapp.com)
 
-⚠️ PROJECT INTRODUCTION AND RATIONALE⚠️
+The Inventory Management Tool is a simple, Python-based command-line application designed to help small businesses keep track of their stock efficiently. It allows users to add, update, delete, and display items with clear, color-coded feedback in the terminal. The idea for this project came from my own experience working in my family’s business, where I realized we lacked an organized way to manage inventory. I always wanted to create a tool that could make this process easier, and learning Python gave me the opportunity to finally build it myself.
 
-In this section, include a few paragraphs providing an overview of your project. Essentially, this part is your "sales pitch". Describe what the project hopes to accomplish, who it is intended to target, and how it will be useful to the target audience. Also, assessors lately have been asking that students explain "why" they opted to do a project about this particular topic/subject, so be sure to explain what made you choose this particular theme/concept/subject/idea. This is the project "rationale".
-
-⚠️ --- END --- ⚠️
-
-🛑 README NOTES 🛑
-
-Do not add a **Table of Contents** to your Markdown files. GitHub has these built-in automatically using the headers/hashtags.
-
-Don't add screenshots for the README/TESTING into your `assets` or `static` folders. Create a new folder at the root-level called `documentation`. Consider creating sub-directories within `documentation` to handle things like `wireframes`, `features`, `validation`, `responsiveness`, etc.
-
-Learn about Markdown Alerts (aka Callouts), a fairly new feature for GitHub Markdown files.
-https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts
-Note: these are not visible within your README Previewer, and are only visible once you push the code to GitHub.
-
-**Site Mockups**
-*([amiresponsive](https://ui.dev/amiresponsive?url=https://my-inventory-manager-17f3f6d5a838.herokuapp.com), [techsini](https://techsini.com/multi-mockup), etc.)*
-Having issues generating site mockups? This is likely due to security policies with your deployed site.
-If you open up your DevTools, there may be an error referencing `X-Frame-Options`.
-
-For Chrome users, head over to http://bit.ly/3iRPn4u and install the extension within your browser. Once installed, navigate back to the mockup site of your choice. You should find your site rendering in the various devices now.
-
-Alternatively, open your project in Gitpod and run the server. Once the site is running, click the `Ports` tab from your Gitpod Terminal. Click the padlock on the appropriate port for your project (`Flask: 5000`, `Django: 8000`). This will make your local page public temporarily. Now, copy the URL of your live-preview page into the responsive tool above. You should find your site rendering in the various devices.
-
-🛑 --- END ---- 🛑
 
 ![screenshot](documentation/mockup.png)
 
-source: [my_inventory_manager amiresponsive](https://ui.dev/amiresponsive?url=https://my-inventory-manager-17f3f6d5a838.herokuapp.com)
-
-> [!IMPORTANT]  
-> The examples in these templates are strongly influenced by the Code Institute walkthrough project called "Love Sandwiches".
 
 ## UX
 
-### The 5 Planes of UX
-
-⚠️ NOTE: make sure to update the text below to match your own project! ⚠️
-
-#### 1. Strategy
 
 **Purpose**
-- Provide users with a simple and effective way to track daily sandwich sales and analyze trends over time.
-- Help users optimize sandwich production to reduce waste and meet demand efficiently.
+- Provide users with a simple and effective way to track inventory levels and manage products directly from the terminal.
+- Help small business owners maintain accurate records of their stock, reduce manual errors, and make informed decisions about restocking or pricing.
+- Offer a practical learning experience for understanding how programming concepts can be applied to real-world business problems.
 
 **Primary User Needs**
-- Track daily sales by sandwich type with minimal effort.
-- Analyze sales data for trends and insights.
-- Receive suggestions for future sandwich production.
+- Easily add, update, delete, and view items in the inventory.
+- Keep track of product quantities and prices with minimal technical knowledge.
+- Store data safely for later use, with the option to extend the system to save data to a file or connect to Google Sheets.
+- Receive clear and user-friendly feedback through color-coded messages in the terminal.
 
 **Business Goals**
-- Offer a reliable tool for tracking sales and optimizing inventory.
-- Help businesses reduce waste and improve customer satisfaction through better forecasting.
+- Offer a lightweight, reliable, and cost-free tool to manage inventory without requiring advanced software.
+- Help businesses save time, avoid stock shortages or overstocking, and maintain up-to-date records.
+- Support better organization and customer satisfaction by ensuring that stock information is always accurate and easy to access.
 
-#### 2. Scope
-
-**[Features](#features)** (see below)
-
-**Content Requirements**
-- Input form for daily sandwich sales.
-- Display of total daily sales and breakdown by sandwich type.
-- Trend analysis over specified time periods (e.g., week, month).
-- Category filters for sandwich types (e.g., vegetarian, meat, cheese).
-- Suggested production numbers for the next day based on sales data.
-
-#### 3. Structure
-
-**Information Architecture**
-- **Hierarchy**:
-  - Daily sales input form as the primary focus for ease of use.
-
-**User Flow**
-1. User opens the app → inputs daily sandwich sales data.
-2. User views a summary of the day’s sales → checks breakdown by type.
-3. User views Trends → analyzes sales trends over time.
-4. User receives suggested production numbers for the next day.
-5. User logs data quickly and returns to shop activities.
-
-#### 4. Skeleton
-
-**[Wireframes](#wireframes)** (see below)
-
-#### 5. Surface
-
-**Visual Design Elements**
-- **[Colours](#colour-scheme)** (see below)
-- **[Typography](#typography)** (see below)
 
 ## Wireframes
 
@@ -105,11 +42,6 @@ I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker
 
 ## User Stories
 
-⚠️ INSTRUCTIONS ⚠️
-
-In this section, list all of your possible user stories for the project. Samples have been provided below using the example walkthrough project for your inspiration. Make sure to adjust to match your own project features!
-
-⚠️ --- END --- ⚠️
 
 | Target | Expectation | Outcome |
 | --- | --- | --- |
@@ -124,13 +56,6 @@ In this section, list all of your possible user stories for the project. Samples
 
 ## Features
 
-⚠️ INSTRUCTIONS ⚠️
-
-In this section, you should go over the different parts of your project, and describe each feature. You should explain what value each of the features provides for the user, focusing on your target audience, what they want to achieve, and how your project can help them achieve these things.
-
-**IMPORTANT**: Remember to always include a screenshot of each individual feature!
-
-⚠️ --- END --- ⚠️
 
 ### Existing Features
 
@@ -145,13 +70,6 @@ In this section, you should go over the different parts of your project, and des
 
 ### Future Features
 
-⚠️ INSTRUCTIONS ⚠️
-
-Do you have additional ideas that you'd like to include on your project in the future? Fantastic, list them here! It's always great to have plans for future improvements. Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
-
-A few examples are listed below to align with possible ways to improve on the sample walkthrough project, to give you some inspiration.
-
-⚠️ --- END ---⚠️
 
 - **User Authentication and Role Management**: Implement a login system with roles (e.g., admin, employee) to restrict data access based on user roles.
 - **Data Visualization**: Add charts and graphs to visually represent sales trends, stock levels, and surplus/waste over time.
@@ -182,15 +100,6 @@ A few examples are listed below to align with possible ways to improve on the sa
 | [![badge](https://img.shields.io/badge/Lucidchart-grey?logo=lucid&logoColor=F97B2C)](https://www.lucidchart.com) | Flow diagrams for mapping the app's logic. |
 | [![badge](https://img.shields.io/badge/StackOverflow-grey?logo=stackoverflow&logoColor=F58025)](https://stackoverflow.com) | Troubleshooting and Debugging |
 
-⚠️ NOTE ⚠️
-
-Want to add more?
-
-- Tutorial: https://shields.io/badges/static-badge
-- Icons/Logos: https://simpleicons.org
-  - FYI: not all logos are available to use
-
-🛑 --- END --- 🛑
 
 ## Database Design
 
@@ -198,59 +107,58 @@ Want to add more?
 
 #### Flowchart
 
-To follow best practice, a flowchart was created for the app's logic, and mapped out using a free version of [Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning) and/or [Draw.io](https://www.draw.io). The flowchart below represents the main process of this Python program. It shows the entire cycle of the application.
-
-![screenshot](documentation/flowchart.png)
-
-⚠️ RECOMMENDED ⚠️
-
-Looking for an interactive version of your flowchart? Consider using a [`Mermaid flowchart`](https://mermaid.live). To simplify the process, you can ask ChatGPT (or similar) the following prompt:
-
-> ChatGPT Prompt:  
-> "Generate a Markdown syntax Mermaid flowchart using a screenshot of my existing flowchart"  
-> [paste-your-flowchart-screenshot-into-ChatGPT]
-
-The "Love Sandwiches" sample flowchart in Markdown syntax using Mermaid can be seen below as an example.
-
-**NOTE**: A Markdown Preview tool doesn't show the interactive flowchart, you must first commit/push the code to your GitHub repository in order to see it live in action.
-
-```mermaid
-flowchart TD
-    A[Start] --> B[Get Sales Data]
-    B --> C{Is Data Valid?}
-    C -->|Yes| D[Convert Data to Integers]
-    C -->|No| B
-    D --> E[Update Sales Worksheet]
-    E --> F[Calculate Surplus Data]
-    F --> G[Update Surplus Worksheet]
-    G --> H[Get Last 5 Sales Entries]
-    H --> I[Calculate Stock Data]
-    I --> J[Update Stock Worksheet]
-    J --> K[End]
-```
-
-Source: [Mermaid Flowchart for Love Sandwiches](https://mermaid.live/edit#pako:eNpdkctugzAQRX_F8jpZdsOiVXkkIa26SR9qgcUIJoAwNjLjVlXIv5cMJErjlWfu8b0z8kHmpkDpyb0yP3kFlsRrmGoxnsdkR2OdieXyXvjJGknsQGEvQiDIJsZnMTjEU1e8g6qLh-MkBidx-MR-EGESGP2NoztjZESsCUu0fXbNvphB-FMjZOcoeesKIJyTP4xt-gqR5lcRQ6skAJU7xZyznXL_ZlwxtL44zcSt15qxDe_5DD2Juzk00mRrPA-6YSy-jiSTN9eBMSPbSyDrt3Fbhp6SSBeZXMgWbQt1MX7E4aSnkipsMZXeeC3ANqlM9XHkwJHZ_epcemQdLqTjjLCG0kJ7bnagv4y5lNa4spLeHlSPxz-Rd5za)
-
-⚠️ --- END --- ⚠️
 
 #### Classes & Functions
 
-⚠️ INSTRUCTIONS ⚠️
 
-Use this space to explain your Python classes (if applicable) and functions. Examples below for inspiration, although Love Sandwiches doesn't use this example `Person` class/object.
+To make the Inventory Management Tool more organised and scalable, I chose to implement an object-oriented structure using two main classes: Item and Inventory. The Item class represents individual products, each with its own attributes such as ID, name, quantity, and price. The Inventory class, on the other hand, manages a collection of these items and provides the functionality to add, display, update, or delete products.
 
-⚠️ --- END --- ⚠️
+By separating responsibilities, the Item class handles individual product data, while the Inventory class manages the overall collection and business logic.
+This object-oriented approach allows me to extend the project later (e.g., connecting to a Google Sheet, adding invoices, or tracking quantities automatically) without rewriting the core functions
 
-The program uses classes as a blueprint for the project's object-oriented programming (OOP). This allows for the object to be reusable and callable where necessary.
 
 ```python
-class Person:
-    """ Insert docstring comments here """
-    def __init__(self, name, age, health, inventory):
+class Item:
+    """
+    Represents a single product or entry in the inventory.
+
+    The Item class is responsible for storing all the details about
+    an individual product such as its ID, name, quantity, and price.
+    It ensures that each item can be easily managed, updated, and displayed
+    as part of the overall inventory.
+
+    Attributes:
+        id (str): A unique identifier for the item.
+        name (str): The name of the product.
+        quantity (int): The available stock quantity.
+        price (float): The price per unit of the product.
+    
+    """
+    def __init__(self, id, name, quantity, price):
+        self.id = id
         self.name = name
-        self.age = age
-        self.health = health
-        self.inventory = inventory
+        self.quantity = quantity
+        self.price = price
+```
+
+
+```python
+class Inventory:
+    """
+    Manages a collection of items in the inventory.
+
+    The Inventory class acts as a container and controller for all items.
+    It allows adding, displaying, updating, and deleting products,
+    as well as saving and loading them (eventually from JSON or Google Sheets).
+
+    This separation of logic (Inventory vs. Item) makes the program
+    easier to maintain and scale.
+
+    Attributes:
+        items (list): A list that stores all Item objects in the inventory.
+    """
+    def __init__(self):
+        self.items = []
 ```
 
 The primary functions used on this application are:
@@ -272,17 +180,10 @@ The primary functions used on this application are:
 
 #### Imports
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to explain your Python imports and packages, with some common examples found below.
-
-⚠️ --- END --- ⚠️
-
 I've used the following Python packages and external imports.
 
 - `gspread`: used with the Google Sheets API
 - `google.oauth2.service_account`: used for the Google Sheets API credentials
-- `time`: used for adding time delays
 - `os`: used for adding a `clear()` function
 - `colorama`: used for including color in the terminal
 - `random`: used to get a random choice from a list
@@ -291,13 +192,12 @@ I've used the following Python packages and external imports.
 
 ### GitHub Projects
 
-⚠️ TIP ⚠️
-
-Consider adding screenshots of your Projects Board(s), Issues (open and closed), and Milestone tasks.
-
-⚠️ --- END ---⚠️
 
 [GitHub Projects](https://www.github.com/Scaphix/my_inventory_manager/projects) served as an Agile tool for this project. Through it, EPICs, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
+
+
+### Must Have (MVP)
+- [As a user, I want to search for a title so that I can find relevant information.](https://github.com/larevolucia/reeltracker_cli/issues/3)
 
 ![screenshot](documentation/gh-projects.png)
 
@@ -419,33 +319,12 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 2. At the top of the Repository, just below the "Settings" button on the menu, locate and click the "Fork" Button.
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
 
-### Local VS Deployment
-
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to discuss any differences between the local version you've developed, and the live deployment site. Generally, there shouldn't be [m]any major differences, so if you honestly cannot find any differences, feel free to use the following example:
-
-⚠️ --- END --- ⚠️
-
-There are no remaining major differences between the local version when compared to the deployed version online.
 
 ## Credits
 
-⚠️ INSTRUCTIONS ⚠️
-
-In the following sections, you need to reference where you got your content, media, and any extra help. It is common practice to use code from other repositories and tutorials (which is totally acceptable), however, it is important to be very specific about these sources to avoid potential plagiarism.
-
-⚠️ --- END ---⚠️
 
 ### Content
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution links for any borrowed code snippets, elements, and resources. Ideally, you should provide an actual link to every resource used, not just a generic link to the main site. If you've used multiple components from the same source (such as Bootstrap), then you only need to list it once, but if it's multiple Codepen samples, then you should list each example individually. If you've used AI for some assistance (such as ChatGPT or Perplexity), be sure to mention that as well. A few examples have been provided below to give you some ideas.
-
-Eventually you'll want to learn how to use Git branches. Here's a helpful tutorial called [Learn Git Branching](https://learngitbranching.js.org) to bookmark for later.
-
-⚠️ --- END ---⚠️
 
 | Source | Notes |
 | --- | --- |
@@ -461,35 +340,6 @@ Eventually you'll want to learn how to use Git branches. Here's a helpful tutori
 
 ### Media
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution links to any media files borrowed from elsewhere (images, videos, audio, etc.). If you're the owner (or a close acquaintance) of some/all media files, then make sure to specify this information. Let the assessors know that you have explicit rights to use the media files within your project. Ideally, you should provide an actual link to every media file used, not just a generic link to the main site, unless it's AI-generated artwork.
-
-Looking for some media files? Here are some popular sites to use. The list of examples below is by no means exhaustive.
-
-- Images
-    - [Pexels](https://www.pexels.com)
-    - [Unsplash](https://unsplash.com)
-    - [Pixabay](https://pixabay.com)
-    - [Lorem Picsum](https://picsum.photos) (placeholder images)
-    - [Wallhere](https://wallhere.com) (wallpaper / backgrounds)
-    - [This Person Does Not Exist](https://thispersondoesnotexist.com) (reload to get a new person)
-- Audio
-    - [Audio Micro](https://www.audiomicro.com/free-sound-effects)
-    - [Button Clicks](https://www.zapsplat.com/sound-effect-category/button-clicks)
-    - [Lasers & Weapons](https://www.zapsplat.com/sound-effect-category/lasers-and-weapons/page/5)
-    - [Puzzle Music](https://soundimage.org/puzzle-music)
-    - [Camtasia Audio](https://library.techsmith.com/camtasia/assets/Audio)
-- Video
-    - [Videvo](https://www.videvo.net)
-- Image Compression
-    - [TinyPNG](https://tinypng.com) (for images <5MB)
-    - [CompressPNG](https://compresspng.com) (for images >5MB)
-
-A few examples have been provided below to give you some ideas on how to do your own Media credits.
-
-⚠️ --- END ---⚠️
-
 | Source | Notes |
 | --- | --- |
 | [ASCII Art Archive](https://www.asciiart.eu) | Pre-defined ASCII art |
@@ -498,16 +348,9 @@ A few examples have been provided below to give you some ideas on how to do your
 
 ### Acknowledgements
 
-⚠️ INSTRUCTIONS ⚠️
-
-Use this space to provide attribution and acknowledgement to any supports that helped, encouraged, or supported you throughout the development stages of this project. It's always lovely to appreciate those that help us grow and improve our developer skills. A few examples have been provided below to give you some ideas.
-
-⚠️ --- END ---⚠️
-
 - I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues.
-- I would like to thank the [Code Institute Slack community](https://code-institute-room.slack.com) and [Code Institute Discord community](https://discord-portal.codeinstitute.net) for the moral support; it kept me going during periods of self doubt and impostor syndrome.
 - I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
-- I would like to thank my employer, for supporting me in my career development change towards becoming a software developer.
+
 
 https://developers.google.com/workspace/sheets/api/quickstart/python
