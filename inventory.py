@@ -2,6 +2,16 @@ from colorama import Fore, Back, Style
 from item import Item
 
 
+def check_inventory_not_empty(func):
+    """Decorator to skip method if inventory is empty."""
+    def wrapper(self, *args, **kwargs):
+        if not self.items:
+            print(Fore.YELLOW + "\n Empty inventory!" + Style.RESET_ALL)
+            return
+        return func(self, *args, **kwargs)
+    return wrapper
+
+
 class Inventory:
     """
     Manages a collection of items in the inventory.
@@ -29,6 +39,7 @@ class Inventory:
         self.items.append(new_item)
         print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
 
+    @check_inventory_not_empty
     def display_item(self):
         """Display all items in the inventory list, sorted by ID"""
         if not self.items:
@@ -46,6 +57,7 @@ class Inventory:
             print("-" * 40)
         print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
+    @check_inventory_not_empty
     def delete_item(self, name):
         for item in self.items:
             if item.name.lower() == name.lower():
