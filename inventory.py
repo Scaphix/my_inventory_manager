@@ -29,11 +29,22 @@ class Inventory:
     def __init__(self):
         self.items = []
 
+    @staticmethod
+    def get_valid_int(prompt):
+        """Ask repeatedly until a valid number is entered."""
+        while True:
+            try:
+                value = int(input(prompt).strip())
+                return value
+            except ValueError:
+                print(Fore.RED + "Invalid input!" + Style.RESET_ALL)
+                print(" Please enter a number.")
+
     def add_item(self):
-        id = input("Enter item ID: ").strip()
-        name = input("Enter item name: ").strip()
-        quantity = input("Enter item quantity: ").strip()
-        price = input("Enter item price: $").strip()
+        id = Inventory.get_valid_int("Enter item ID: ")
+        name = ("Enter item name: ")
+        quantity = Inventory.get_valid_int("Enter item quantity: ")
+        price = Inventory.get_valid_int("Enter item price: $")
 
         new_item = Item(id, name, quantity, price)
         self.items.append(new_item)
@@ -67,3 +78,22 @@ class Inventory:
                 print(Style.RESET_ALL)
                 return
         print(Fore.RED + f" {name} not found." + Style.RESET_ALL)
+
+    @check_inventory_not_empty
+    def update_item(self):
+        """Update an existing item"""
+        item_id = input("Enter ID to update: ").strip()
+        for item in self.items:
+            if item.id == item_id:
+                print("Please inter the new item")
+                new_name = input("Enter the new Name: ")
+                new_qty = Inventory.get_valid_int("Enter the new Quantity: ")
+                new_price = Inventory.get_valid_int("Enter the new Price: ")
+                item.name = new_name
+                item.price = new_price
+                item.quantity = new_qty
+                print("\nItem updating...\n")
+                print(Fore.GREEN + "Item updated successfully!")
+                print(Style.RESET_ALL)
+                return
+        print(Fore.RED + "Item not found." + Style.RESET_ALL)
