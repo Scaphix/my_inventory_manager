@@ -43,48 +43,48 @@ I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker
 ## User Stories
 
 
-| Target | Expectation | Outcome |
-| --- | --- | --- |
-| As a user | I would like to input the number of each sandwich type sold during the day | so that I can track daily sales accurately. |
-| As a user | I would like to view a breakdown of total sandwich sales by type | so that I can easily see which sandwiches are the most and least popular. |
-| As a user | I would like the application to calculate the total sandwiches sold for the day | so that I don’t have to do manual sums. |
-| As a user | I would like to see a trend of sandwich sales over time (e.g., week, month) | so that I can identify which sandwiches are consistently popular. |
-| As a user | I would like the application to suggest an estimated number of each sandwich type to make for the next day, based on past sales data | so that I can minimize waste and shortages. |
-| As a user | I would like the app to categorize sandwiches by type (e.g., vegetarian, meat, cheese) | so that I can track popularity within different dietary categories. |
-| As a user | I would like to input sales quickly with minimal typing | so that I can focus on running the shop instead of logging data. |
-| As a user | I would like the app to be intuitive and easy to use | so that I can start tracking sales without needing extensive training. |
+| Target    | Expectation                                                                 | Outcome                                                                                |
+| ----------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| As a user | I would like to add new items to my inventory with unique IDs and names     | so that I can track each product individually without confusion.                       |
+| As a user | I would like to update existing items (name, quantity, price)               | so that I can keep my inventory information current as stock levels and prices change. |
+| As a user | I would like to delete items from my inventory with a confirmation prompt   | so that I can remove discontinued products while avoiding accidental deletions.        |
+| As a user | I would like to view all items in a sorted, formatted table                 | so that I can easily see my complete inventory at a glance.                            |
+| As a user | I would like the application to validate my input (IDs, quantities, prices) | so that I don't accidentally enter invalid data that could corrupt my records.         |
+| As a user | I would like to see color-coded feedback for success, errors, and warnings  | so that I can quickly understand the results of my actions.                            |
+| As a user | I would like the app to prevent duplicate IDs and names                     | so that each item in my inventory is unique and identifiable.                          |
+| As a user | I would like the app to be intuitive with a clear menu system               | so that I can manage my inventory without needing extensive training.                  |
 
 ## Features
 
-
 ### Existing Features
 
-| Feature | Notes | Screenshot |
-| --- | --- | --- |
-| Data Input Validation | The program validates user input by ensuring the data is exactly six comma-separated numbers before continuing. | ![screenshot](documentation/features/data-validation.png) |
-| API Update | Sales, surplus, and stock data are updated in the relevant Google Sheets worksheet using gspread functionality. | ![screenshot](documentation/features/api-update.png) |
-| Surplus Calculation | Calculates surplus by comparing the latest stock and sales data to identify potential waste or shortages. | ![screenshot](documentation/features/surplus-calculation.png) |
-| Last 5 Sales Entries | Retrieves the last five sales entries from the "sales" worksheet for calculating stock averages. | ![screenshot](documentation/features/latest-entries.png) |
-| Stock Calculation | Computes stock based on the last 5 sales entries, adding 10% to the average to ensure adequate future stock. | ![screenshot](documentation/features/stock-calculation.png) |
-| Sales Data Automation | Automates the entire process of retrieving, validating, and updating sales, surplus, and stock data in Google Sheets. | ![screenshot](documentation/features/sales-data.png) |
+
+| Feature               | Notes                                                                                                                                                                     | Screenshot                                                 |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Add Item              | Users can add new items with unique ID and name validation. The system ensures no duplicate IDs or names exist and validates quantity (integer) and price (float) inputs. | ![screenshot](documentation/features/add-item.png)         |
+| Update Item           | Allows users to modify existing items by ID, updating the name, quantity, and price. Validates all inputs and confirms updates with success messages.                     | ![screenshot](documentation/features/update-item.png)      |
+| Display Items         | Shows all inventory items in a formatted table sorted by ID, displaying ID, name, quantity, and price in a clear, color-coded layout.                                     | ![screenshot](documentation/features/display-items.png)    |
+| Delete Item           | Removes items from inventory by ID with a confirmation prompt (y/n) to prevent accidental deletion. Handles invalid responses gracefully.                                 | ![screenshot](documentation/features/delete-item.png)      |
+| Input Validation      | Validates integer inputs (ID, quantity) and float inputs (price) with retry prompts. Ensures data integrity by rejecting invalid entries with clear error messages.       | ![screenshot](documentation/features/input-validation.png) |
+| Color-coded Feedback  | Uses colorama to provide visual feedback: green for success, red for errors, yellow for warnings, blue for menu headers, and magenta for section headers.                 | ![screenshot](documentation/features/color-feedback.png)   |
+| Empty Inventory Check | Decorator pattern prevents update and delete operations on empty inventory, displaying a friendly warning message instead.                                                | ![screenshot](documentation/features/empty-check.png)      |
+| Menu System           | Interactive menu-driven interface with 5 options (Add, Update, Display, Delete, Exit) that loops until the user chooses to exit.                                          | ![screenshot](documentation/features/menu-system.png)      |
 
 ### Future Features
 
-
 - **User Authentication and Role Management**: Implement a login system with roles (e.g., admin, employee) to restrict data access based on user roles.
-- **Data Visualization**: Add charts and graphs to visually represent sales trends, stock levels, and surplus/waste over time.
-- **Real-time Data Sync**: Integrate real-time syncing of sales and stock data across multiple devices to support live updates.
-- **Automated Restocking Alerts**: Notify users when stock levels fall below a certain threshold, prompting restock orders.
-- **Predictive Analytics**: Use historical sales data to predict future demand, helping to optimize stock levels and minimize waste.
-- **Multilingual Support**: Add support for multiple languages to make the app more accessible to a global audience.
-- **Mobile App Integration**: Develop a mobile version of the app for easier data input and stock management on the go.
-- **Reporting and Exporting**: Generate and export detailed reports in PDF or CSV format for deeper analysis of sales, surplus, and stock data.
-- **Inventory Management**: Include functionality to track supplier information, order inventory, and manage costs directly within the app.
-- **Customer Feedback Integration**: Allow customers to leave feedback on sold items, giving insight into sales performance and customer satisfaction.
-- **Customizable Dashboards**: Provide users with the ability to customize their dashboard, selecting which data points and metrics they want to monitor.
-- **Historical Data Comparison**: Implement functionality to compare current sales and stock data with data from the same period in previous years.
-- **Seasonal Adjustment Recommendations**: Analyze sales patterns and suggest stock adjustments for holidays or other seasonal trends.
-- **API Integration**: Provide an API for integrating with other third-party services, such as point-of-sale systems or accounting software.
+- **Data Persistence**: Save inventory data to JSON files or connect to Google Sheets for persistent storage across sessions.
+- **Data Visualization**: Add charts and graphs to visually represent stock levels, value trends, and inventory metrics over time.
+- **Search and Filter**: Implement search functionality to find items by name, ID range, or price range, with filtering options.
+- **Low Stock Alerts**: Notify users when stock levels fall below a defined threshold, prompting restock orders.
+- **Bulk Operations**: Add ability to import/export multiple items at once via CSV files.
+- **Transaction History**: Track all add/update/delete operations with timestamps for audit trails.
+- **Reporting and Exporting**: Generate and export detailed inventory reports in PDF or CSV format.
+- **Category Management**: Organize items into categories (e.g., electronics, food, clothing) for better organization.
+- **Mobile App Integration**: Develop a mobile version of the app for easier inventory management on the go.
+- **Multi-location Support**: Extend the system to track inventory across multiple warehouse or store locations.
+- **Price History**: Track price changes over time to analyze pricing trends and profitability.
+
 
 ## Tools & Technologies
 
@@ -163,30 +163,36 @@ class Inventory:
 
 The primary functions used on this application are:
 
-- `get_sales_data()`
-    - Get sales figures input from the user.
-- `validate_data()`
-    - Converts all string values into integers.
-- `update_worksheet()`
-    - Update the relevant worksheet with the data provided.
-- `calculate_surplus_data()`
-    - Compare sales with stock and calculate the surplus for each item type.
-- `get_last_5_entries_sales()`
-    - Collects columns of data from sales worksheet.
-- `calculate_stock_data()`
-    -  Calculate the average stock for each item type, adding 10%.
-- `main()`
-    - Run all program functions.
+- `add_item()`
+  - Prompts user for item details (ID, name, quantity, price) and adds a new Item object to the inventory list.
+- `update_item()`
+  - Allows user to modify an existing item's name, quantity, and price by searching for it by ID.
+- `delete_item(id)`
+  - Removes an item from the inventory by ID after user confirmation (y/n prompt).
+- `display_item()`
+  - Displays all items in a formatted table sorted by ID, showing ID, name, quantity, and price.
+- `get_valid_int(prompt)`
+  - Static method that validates and returns integer input, re-prompting on invalid entries.
+- `get_valid_float(prompt)`
+  - Static method that validates and returns float input for price values.
+- `get_id()`
+  - Gets a unique item ID from the user, checking for duplicates in the existing inventory.
+- `get_name()`
+  - Gets a unique item name from the user, checking for duplicates (case-insensitive).
+- `check_inventory_not_empty()`
+  - Decorator function that prevents operations on empty inventory and displays a warning.
+- `tasks_list()`
+  - Displays the main menu and handles user task selection in a loop until exit.
+- `my_task(selected_task)`
+  - Executes the selected task (1-5) by calling the appropriate inventory method.
 
 #### Imports
 
 I've used the following Python packages and external imports.
 
-- `gspread`: used with the Google Sheets API
-- `google.oauth2.service_account`: used for the Google Sheets API credentials
-- `os`: used for adding a `clear()` function
-- `colorama`: used for including color in the terminal
-- `random`: used to get a random choice from a list
+- `colorama`: used for including color in the terminal (Fore, Back, Style)
+- `item`: local module containing the Item class definition
+- `inventory`: local module containing the Inventory class and inventory management logic
 
 ## Agile Development Process
 
@@ -228,10 +234,9 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 
 **Bug 1**:
 
-**Description**: I deployed the project to Heroku without including all required dependencies in the requirements.txt file. 
+**Description**: I deployed the project to Heroku without including all required dependencies in the requirements.txt file. This caused an error where Heroku could not recognize the 'colorama' module. 
 
-**Correction**: This caused an error where Heroku could not recognize the 'colorama' module. 
-Added the missing dependencies to fix the deployment issue.
+**Correction**: I added the missing dependencies to fix the deployment issue.
 
 
 **Bug 2**:
@@ -255,7 +260,44 @@ Added the missing dependencies to fix the deployment issue.
         inventory.delete_item(name_to_delete)
 ```
 
+**Bug 3**:
 
+**Description**: The delete function was comparing string input with integer IDs, causing items to not be found. When adding items, IDs were stored as integers via `get_valid_int()`, but the delete function accepted input as a string without conversion.
+
+**Correction**: Added type conversion in the delete task handler:
+
+```python
+    elif selected_task == "4":
+        print("Please enter the id of the item to delete ")
+        try:
+            id_to_delete = int(input("Enter Id: ").strip())
+            inventory.delete_item(id_to_delete)
+        except ValueError:
+            print(Fore.RED + "Invalid ID! Please enter a number.")
+            print(Style.RESET_ALL)
+```
+
+**Bug 4**:
+
+**Description**: When a user entered an invalid response (anything other than 'y' or 'n') at the delete confirmation prompt, the code did not return from the function. It would fall through the conditional and print "not found" even though the item was found.
+
+**Correction**: Added an else clause to handle invalid confirmation input:
+
+```python
+    if delete == "y":
+        self.items.remove(item)
+        print(Fore.GREEN + f" item {id} deleted successfully.")
+        print(Style.RESET_ALL)
+        return
+    elif delete == "n":
+        print(Fore.YELLOW + " Deletion cancelled.")
+        print(Style.RESET_ALL)
+        return
+    else:
+        print(Fore.RED + " Invalid input. Deletion cancelled.")
+        print(Style.RESET_ALL)
+        return
+```
 
 ## Deployment
 
@@ -338,11 +380,7 @@ You can clone the repository by following these steps:
 	- `git clone https://www.github.com/Scaphix/my_inventory_manager.git`
 7. Press "Enter" to create your local clone.
 
-Alternatively, if using Ona (formerly Gitpod), you can click below to create your own workspace using this repository.
 
-[![Open in Ona-Gitpod](https://ona.com/run-in-ona.svg)](https://gitpod.io/#https://www.github.com/Scaphix/my_inventory_manager)
-
-**Please Note**: in order to directly open the project in Ona (Gitpod), you should have the browser extension installed. A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/configure/user-settings/browser-extension).
 
 #### Forking
 
@@ -371,6 +409,10 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 | [StackOverflow](https://stackoverflow.com/a/50921841) | Clear screen in Python |
 | [ChatGPT](https://chatgpt.com) | Help with code logic and explanations |
 
+### Photo
+
+[Layout image](https://www.veeqo.com/gb/blog/inventory-shrinkage)
+
 ### Media
 
 | Source | Notes |
@@ -384,6 +426,3 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 - I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues.
 - I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
-
-
-https://developers.google.com/workspace/sheets/api/quickstart/python
