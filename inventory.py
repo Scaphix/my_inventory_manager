@@ -40,11 +40,20 @@ class Inventory:
                 print(Fore.RED + "Invalid input!" + Style.RESET_ALL)
                 print(" Please enter a number.")
 
+    def get_id(self):
+        while True:
+            id = self.get_valid_int("Enter item ID: ")
+            if any(item.id == id for item in self.items):
+                print(Fore.RED + f"Error: ID {id} already exists.")
+                print("Please use a unique ID." + Style.RESET_ALL)
+                break
+            return id
+
     def add_item(self):
-        id = Inventory.get_valid_int("Enter item ID: ")
-        name = ("Enter item name: ")
-        quantity = Inventory.get_valid_int("Enter item quantity: ")
-        price = Inventory.get_valid_int("Enter item price: $")
+        id = self.get_id()
+        name = input("Enter item name: ")
+        quantity = self.get_valid_int("Enter item quantity: ")
+        price = self.get_valid_int("Enter item price: $")
 
         new_item = Item(id, name, quantity, price)
         self.items.append(new_item)
