@@ -51,9 +51,13 @@ def my_task(selected_task):
         inventory.display_item()
 
     elif selected_task == "4":
-        print("Please enter the name of the item to delete ")
-        name_to_delete = input("Enter Name: ").strip()
-        inventory.delete_item(name_to_delete)
+        print("Please enter the id of the item to delete ")
+        try:
+            id_to_delete = int(input("Enter Id: ").strip())
+            inventory.delete_item(id_to_delete)
+        except ValueError:
+            print(Fore.RED + "Invalid ID! Please enter a number.")
+            print(Style.RESET_ALL)
 
     elif selected_task == "5":
         print(" Exiting the program .... Goodbye !")

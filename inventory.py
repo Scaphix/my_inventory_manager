@@ -105,14 +105,26 @@ class Inventory:
         print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
     @check_inventory_not_empty
-    def delete_item(self, name):
+    def delete_item(self, id):
         for item in self.items:
-            if item.name.lower() == name.lower():
-                self.items.remove(item)
-                print(Fore.GREEN + f" {name} deleted successfully.")
-                print(Style.RESET_ALL)
-                return
-        print(Fore.RED + f" {name} not found." + Style.RESET_ALL)
+            if item.id == id:
+                delete = input(
+                    f"Are you sure you want to delete item {id} ? (y/n:)"
+                    ).strip().lower()
+                if delete == "y":
+                    self.items.remove(item)
+                    print(Fore.GREEN + f" item {id} deleted successfully.")
+                    print(Style.RESET_ALL)
+                    return
+                elif delete == "n":
+                    print(Fore.YELLOW + " Deletion cancelled.")
+                    print(Style.RESET_ALL)
+                    return
+                else:
+                    print(Fore.RED + " Invalid input. Deletion cancelled.")
+                    print(Style.RESET_ALL)
+                    return
+        print(Fore.RED + f" {id} not found." + Style.RESET_ALL)
 
     @check_inventory_not_empty
     def update_item(self):
