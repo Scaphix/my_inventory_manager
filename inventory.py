@@ -125,7 +125,7 @@ class Inventory:
         for item in self.items:
             if item.id == item_id:
                 print("Please inter the new item")
-                new_name = self.get_name
+                new_name = self.get_name()
                 new_qty = self.get_valid_int("Enter the new Quantity: ")
                 new_price = self.get_valid_float("Enter the new Price: ")
                 item.name = new_name
