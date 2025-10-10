@@ -61,7 +61,7 @@ class Inventory:
 
     def get_name(self):
         while True:
-            name = input("Enter item name :").strip()
+            name = input("Enter item name:").strip()
             # Checks for empty input
             if not name:
                 print(Fore.RED + "Error: Name cannot be empty.")
@@ -94,12 +94,14 @@ class Inventory:
         sorted_items = sorted(self.items, key=lambda item: item.id)
 
         print("Loading items....\n")
-        print(Back.MAGENTA + "=" * 13 + "INVENTORY LIST" + "=" * 13)
+        print(Back.MAGENTA + "=" * 12 + "INVENTORY LIST" + "=" * 12)
         print(Style.RESET_ALL)
-        print("-" * 40)
+        print("-" * 38)
+        print(f"{'ID':<2} | {'Name':<10} | {'Qty':>4} | {'Price':>5}")
+        print("-" * 38)
         for i, item in enumerate(sorted_items, start=1):
             print(item)
-            print("-" * 40)
+            print("-" * 38)
         print(Fore.GREEN + " End of inventory list\n" + Style.RESET_ALL)
 
     @check_inventory_not_empty
