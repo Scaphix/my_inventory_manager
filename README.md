@@ -61,14 +61,14 @@ I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker
 
 | Feature               | Notes                                                                                                                                                                     | Screenshot                                                 |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Add Item              | Users can add new items with unique ID and name validation. The system ensures no duplicate IDs or names exist and validates quantity (integer) and price (float) inputs. | ![screenshot](documentation/features/add-item.png)         |
+| Add Item              | Users can add new items with unique ID and name validation. The system ensures no duplicate IDs or names exist and validates quantity (integer) and price (float) inputs. | ![screenshot](document/add-item.png)         |
 | Update Item           | Allows users to modify existing items by ID, updating the name, quantity, and price. Validates all inputs and confirms updates with success messages.                     | ![screenshot](documentation/features/update-item.png)      |
-| Display Items         | Shows all inventory items in a formatted table sorted by ID, displaying ID, name, quantity, and price in a clear, color-coded layout.                                     | ![screenshot](documentation/features/display-items.png)    |
-| Delete Item           | Removes items from inventory by ID with a confirmation prompt (y/n) to prevent accidental deletion. Handles invalid responses gracefully.                                 | ![screenshot](documentation/features/delete-item.png)      |
-| Input Validation      | Validates integer inputs (ID, quantity) and float inputs (price) with retry prompts. Ensures data integrity by rejecting invalid entries with clear error messages.       | ![screenshot](documentation/features/input-validation.png) |
+| Display Items         | Shows all inventory items in a formatted table sorted by ID, displaying ID, name, quantity, and price in a clear, color-coded layout.                                     | ![screenshot](document/inventory.png)    |
+| Delete Item           | Removes items from inventory by ID with a confirmation prompt (y/n) to prevent accidental deletion. Handles invalid responses gracefully.                                 | ![screenshot](document/delete-item.png)      |
+| Input Validation      | Validates integer inputs (ID, quantity) and float inputs (price) with retry prompts. Ensures data integrity by rejecting invalid entries with clear error messages.       | ![screenshot](document/input-validation.png) |
 | Color-coded Feedback  | Uses colorama to provide visual feedback: green for success, red for errors, yellow for warnings, blue for menu headers, and magenta for section headers.                 | ![screenshot](documentation/features/color-feedback.png)   |
 | Empty Inventory Check | Decorator pattern prevents update and delete operations on empty inventory, displaying a friendly warning message instead.                                                | ![screenshot](documentation/features/empty-check.png)      |
-| Menu System           | Interactive menu-driven interface with 5 options (Add, Update, Display, Delete, Exit) that loops until the user chooses to exit.                                          | ![screenshot](documentation/features/menu-system.png)      |
+| Menu System           | Interactive menu-driven interface with 5 options (Add, Update, Display, Delete, Exit) that loops until the user chooses to exit.                                          | ![screenshot](document/menu-system.png)      |
 
 ### Future Features
 
