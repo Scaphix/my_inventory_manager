@@ -40,6 +40,16 @@ class Inventory:
                 print(Fore.RED + "Invalid input!" + Style.RESET_ALL)
                 print(" Please enter a number.")
 
+    @staticmethod
+    def get_valid_float(prompt):
+        """Keep asking until a valid float is entered. For Price"""
+        while True:
+            try:
+                return float(input(prompt))
+            except ValueError:
+                print(Fore.RED + "Please enter a valid number (e.g. 12.50).")
+                print("e.g. 12.50" + Style.RESET_ALL)
+
     def get_id(self):
         while True:
             id = self.get_valid_int("Enter item ID: ")
@@ -53,7 +63,7 @@ class Inventory:
         id = self.get_id()
         name = input("Enter item name: ")
         quantity = self.get_valid_int("Enter item quantity: ")
-        price = self.get_valid_int("Enter item price: $")
+        price = self.get_valid_float("Enter item price: $")
 
         new_item = Item(id, name, quantity, price)
         self.items.append(new_item)
