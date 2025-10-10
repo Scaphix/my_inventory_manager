@@ -59,9 +59,24 @@ class Inventory:
                 break
             return id
 
+    def get_name(self):
+        while True:
+            name = input("Enter item name :").strip()
+            # Checks for empty input
+            if not name:
+                print(Fore.RED + "Error: Name cannot be empty.")
+                print(Style.RESET_ALL)
+                continue
+            # Checks for duplicates
+            if any(item.name.lower() == name.lower() for item in self.items):
+                print(Fore.RED + f"Error: '{name}' already exists.")
+                print("Please use a different name." + Style.RESET_ALL)
+                continue
+            return name
+
     def add_item(self):
         id = self.get_id()
-        name = input("Enter item name: ")
+        name = self.get_name()
         quantity = self.get_valid_int("Enter item quantity: ")
         price = self.get_valid_float("Enter item price: $")
 
