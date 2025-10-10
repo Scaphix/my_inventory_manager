@@ -10,7 +10,7 @@ Developer: Chahinez Boutemine ([Scaphix](https://www.github.com/Scaphix))
 The Inventory Management Tool is a simple, Python-based command-line application designed to help small businesses keep track of their stock efficiently. It allows users to add, update, delete, and display items with clear, color-coded feedback in the terminal. The idea for this project came from my own experience working in my family’s business, where I realized we lacked an organized way to manage inventory. I always wanted to create a tool that could make this process easier, and learning Python gave me the opportunity to finally build it myself.
 
 
-![screenshot](documentation/mockup.png)
+![screenshot](document/mockup.png)
 
 
 ## UX
