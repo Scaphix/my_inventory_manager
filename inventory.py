@@ -115,13 +115,19 @@ class Inventory:
     @check_inventory_not_empty
     def update_item(self):
         """Update an existing item"""
-        item_id = input("Enter ID to update: ").strip()
+        try:
+            item_id = int(input("Enter ID to update: ").strip())
+        except ValueError:
+            print(Fore.RED + "Invalid ID!")
+            print("Please enter a number." + Style.RESET_ALL)
+            return
+
         for item in self.items:
             if item.id == item_id:
                 print("Please inter the new item")
-                new_name = input("Enter the new Name: ")
-                new_qty = Inventory.get_valid_int("Enter the new Quantity: ")
-                new_price = Inventory.get_valid_int("Enter the new Price: ")
+                new_name = self.get_name
+                new_qty = self.get_valid_int("Enter the new Quantity: ")
+                new_price = self.get_valid_float("Enter the new Price: ")
                 item.name = new_name
                 item.price = new_price
                 item.quantity = new_qty
