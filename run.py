@@ -26,6 +26,7 @@ def tasks_list():
 
 
 def my_task(selected_task):
+
     if selected_task == "1":
         print("\033c", end="")
         print(Fore.BLUE + Style.BRIGHT + "\n--- Add a New Item ---")
@@ -37,7 +38,6 @@ def my_task(selected_task):
                 break
 
     elif selected_task == "2":
-        print("\033c", end="")
         inventory.update_item()
 
     elif selected_task == "3":
@@ -45,7 +45,6 @@ def my_task(selected_task):
         inventory.display_item()
 
     elif selected_task == "4":
-        print("\033c", end="")
         print("Please enter the name of the item to delete ")
         name_to_delete = input(" Enter Name: ").strip()
         inventory.delete_item(name_to_delete)

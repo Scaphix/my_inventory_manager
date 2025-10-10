@@ -56,7 +56,7 @@ class Inventory:
             if any(item.id == id for item in self.items):
                 print(Fore.RED + f"Error: ID {id} already exists.")
                 print("Please use a unique ID." + Style.RESET_ALL)
-                break
+                continue
             return id
 
     def get_name(self):
@@ -84,7 +84,6 @@ class Inventory:
         self.items.append(new_item)
         print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
 
-    @check_inventory_not_empty
     def display_item(self):
         """Display all items in the inventory list, sorted by ID"""
         if not self.items:
