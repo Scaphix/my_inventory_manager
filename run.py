@@ -9,9 +9,15 @@ def tasks_list():
     """Display the menu and handle user input"""
     program_running = True
     while program_running:
-        print(Back.BLUE + "\n Welcome to the Inventory Managment tool")
+        print(Back.BLUE + "\n Welcome to the Inventory Managment tool\n")
         print(Style.RESET_ALL)
-        print("---------------------------------------")
+        print(
+            "This tool helps you easily manage your stock-"
+            "add, view, update, or delete items using their ID.\n"
+            "Follow the prompts on screen to perform any action "
+            "and keep your inventory up to date.\n"
+            )
+        print("-" * 40)
         print("Please select one of the following tasks:\n")
         print(Fore.BLUE + Style.BRIGHT + "[1] Add item")
         print("[2] Update item")
@@ -46,7 +52,7 @@ def my_task(selected_task):
 
     elif selected_task == "4":
         print("Please enter the name of the item to delete ")
-        name_to_delete = input(" Enter Name: ").strip()
+        name_to_delete = input("Enter Name: ").strip()
         inventory.delete_item(name_to_delete)
 
     elif selected_task == "5":
