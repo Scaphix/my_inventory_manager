@@ -112,7 +112,6 @@ class Inventory:
         print(new_item)
         self.items.append(new_item)
         self.save_to_sheet(new_item)
-        print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
 
     def display_item(self):
         """Display all items in the inventory list, sorted by ID"""
@@ -123,7 +122,7 @@ class Inventory:
         # Sorting the list of dictionaries by the 'id' key
         sorted_items = sorted(self.items, key=lambda item: item.id)
 
-        print("Loading items....\n")
+        print("\nLoading items....\n")
         print(Back.MAGENTA + "=" * 12 + "INVENTORY LIST" + "=" * 12)
         print(Style.RESET_ALL)
         print("-" * 38)
@@ -136,16 +135,28 @@ class Inventory:
 
     @check_inventory_not_empty
     def delete_item(self, id):
-        """Delete the chosen Item """
+        """
+        Delete the chosen Item (by ID), localy and from Google sheet
+        """
         for item in self.items:
             if item.id == id:
                 delete = input(
                     f"Are you sure you want to delete item {id} ? (y/n:)"
                     ).strip().lower()
                 if delete == "y":
-                    self.items.remove(item)
-                    print(Fore.GREEN + f" item {id} deleted successfully.")
-                    print(Style.RESET_ALL)
+                    try:
+                        self.items.remove(item)
+                        data = self.worksheet.get_all_values()
+                        for i, row in enumerate(data, start=1):
+                            if row and str(row[0]) == str(id):
+                                self.worksheet.delete_rows(i)
+                                break
+                        print(Fore.GREEN + f" item {id} deleted successfully.")
+                        print(Style.RESET_ALL)
+                    except Exception as e:
+                        print(Fore.RED + f"""Error deleting item
+                              from sheet: {e}""")
+                        print(Style.RESET_ALL)
                     return
                 elif delete == "n":
                     print(Fore.YELLOW + " Deletion cancelled.")
@@ -173,9 +184,13 @@ class Inventory:
                 new_name = self.get_name()
                 new_qty = self.get_valid_int("Enter the new Quantity: ")
                 new_price = self.get_valid_float("Enter the new Price: ")
+
                 item.name = new_name
                 item.price = new_price
                 item.quantity = new_qty
+                new_item = Item(id, item.name, item.quantity, item.price)
+                print(new_item)
+                self.save_to_sheet(new_item)
                 print("\nItem updating...\n")
                 print(Fore.GREEN + "Item updated successfully!")
                 print(Style.RESET_ALL)
@@ -193,8 +208,8 @@ class Inventory:
                 item.quantity,
                 item.price
             ])
-            print(Fore.GREEN + "Item successfully saved to Google Sheet!"
-                  + Style.RESET_ALL)
+            print(Fore.GREEN + """Item successfully added and saved
+                   to Google Sheet!""" + Style.RESET_ALL)
         except Exception as e:
             print(Fore.RED + f"Error saving to Google Sheet: {e}"
                   + Style.RESET_ALL)
