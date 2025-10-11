@@ -191,13 +191,12 @@ class Inventory:
                 if self.update_item_in_sheet(item_id, item):
                     print(Fore.GREEN + "Item updated successfully!"
                           + Style.RESET_ALL)
-                    break
+                    return
                 else:
                     print(Fore.YELLOW + "Item not found in Google Sheet."
                           + Style.RESET_ALL)
                     return
-            print(Fore.RED + "Item not found." + Style.RESET_ALL)
-            return
+        print(Fore.RED + "Item not found." + Style.RESET_ALL)
 
     def save_to_sheet(self, item):
         """
