@@ -51,6 +51,7 @@ class Inventory:
                 print("e.g. 12.50" + Style.RESET_ALL)
 
     def get_id(self):
+        """Check duplicates: The Item ID must be unique"""
         while True:
             id = self.get_valid_int("Enter item ID: ")
             if any(item.id == id for item in self.items):
@@ -60,6 +61,7 @@ class Inventory:
             return id
 
     def get_name(self):
+        """ Checks duplicates: The Item Name must be unique """
         while True:
             name = input("Enter item name:").strip()
             # Checks for empty input
@@ -75,6 +77,7 @@ class Inventory:
             return name
 
     def add_item(self):
+        """ Add new Items to the inventory """
         id = self.get_id()
         name = self.get_name()
         quantity = self.get_valid_int("Enter item quantity: ")
@@ -106,6 +109,7 @@ class Inventory:
 
     @check_inventory_not_empty
     def delete_item(self, id):
+        """Delete the chosen Item """
         for item in self.items:
             if item.id == id:
                 delete = input(
