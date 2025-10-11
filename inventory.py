@@ -109,7 +109,6 @@ class Inventory:
         price = self.get_valid_float("Enter item price: $")
 
         new_item = Item(id, name, quantity, price)
-        print(new_item)
         self.items.append(new_item)
         self.save_to_sheet(new_item)
 
@@ -185,17 +184,20 @@ class Inventory:
                 new_qty = self.get_valid_int("Enter the new Quantity: ")
                 new_price = self.get_valid_float("Enter the new Price: ")
 
+                # Update local item
                 item.name = new_name
-                item.price = new_price
                 item.quantity = new_qty
-                new_item = Item(id, item.name, item.quantity, item.price)
-                print(new_item)
-                self.save_to_sheet(new_item)
-                print("\nItem updating...\n")
-                print(Fore.GREEN + "Item updated successfully!")
-                print(Style.RESET_ALL)
-                return
-        print(Fore.RED + "Item not found." + Style.RESET_ALL)
+                item.price = new_price
+                if self.update_item_in_sheet(item_id, item):
+                    print(Fore.GREEN + "Item updated successfully!"
+                          + Style.RESET_ALL)
+                    break
+                else:
+                    print(Fore.YELLOW + "Item not found in Google Sheet."
+                          + Style.RESET_ALL)
+                    return
+            print(Fore.RED + "Item not found." + Style.RESET_ALL)
+            return
 
     def save_to_sheet(self, item):
         """
@@ -208,8 +210,21 @@ class Inventory:
                 item.quantity,
                 item.price
             ])
-            print(Fore.GREEN + """Item successfully added and saved
-                   to Google Sheet!""" + Style.RESET_ALL)
+            print(
+                Fore.GREEN + "Item successfully added and saved !"
+                + Style.RESET_ALL
+                )
         except Exception as e:
             print(Fore.RED + f"Error saving to Google Sheet: {e}"
                   + Style.RESET_ALL)
+
+    def update_item_in_sheet(self, item_id, item):
+        rows = self.worksheet.get_all_values()
+        for i, row in enumerate(rows[1:], start=2):
+            if str(row[0]) == str(item_id):
+                self.worksheet.update(
+                    f"A{i}:D{i}",
+                    [[item.id, item.name, item.quantity, item.price]]
+                )
+                return True
+        return False
