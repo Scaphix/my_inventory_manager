@@ -227,14 +227,27 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 
 ## Testing
 
-> [!NOTE]  
-> For all testing, please refer to the [TESTING.md](TESTING.md) file.
+## Code Validation
+
+I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
+
+
+The final results are as follows:
+
+
+| File  | Screenshot | Notes |
+| ---  | --- | --- |
+| [run.py](https://github.com/Scaphix/my_inventory_manager/blob/main/run.py) | ![screenshot](document/run-valid.png)  | No errors found |
+| [inventory.py](https://github.com/Scaphix/my_inventory_manager/blob/main/inventory.py) | ![screenshot](document/inventory-valid.png)  | No errors found |
+| [item.py](https://github.com/Scaphix/my_inventory_manager/blob/main/item.py) | ![screenshot](document/item-valid.png)  | No errors found |
+
 
 ## Bugs
 
 **Bug 1**:
+ ![](document/bug2.png)
 
-**Description**: I deployed the project to Heroku without including all required dependencies in the requirements.txt file. This caused an error where Heroku could not recognize the 'colorama' module. 
+**Description**: I deployed the project to Heroku without including all required dependencies in the requirements.txt file. This caused an error where Heroku could not recognize the module. 
 
 **Correction**: I added the missing dependencies to fix the deployment issue.
 
