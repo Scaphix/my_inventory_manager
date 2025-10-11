@@ -21,7 +21,9 @@ inventory = Inventory(my_stock)
 
 
 def get_items():
-    # Load existing data from Google Sheet into the local inventory
+    """
+    Load existing data from Google Sheet into the local inventory
+    """
     data = my_stock.get_all_values()
 
     # Skip the header row and ensure each row has enough columns
@@ -48,7 +50,7 @@ def main():
           + Style.RESET_ALL
           )
     print(
-            "This tool helps you easily manage your stock-"
+            "This tool helps you to easily manage your stock: "
             "add, view, update, or delete items using their ID.\n"
             "Follow the prompts on screen to perform any action "
             "and keep your inventory up to date.\n"
@@ -91,6 +93,7 @@ def my_task(selected_task):
                 break
 
     elif selected_task == 2:
+        print("\033c", end="")
         print(Fore.BLUE + Style.BRIGHT + "\n--- Update an existing Item ---"
               + Style.RESET_ALL)
         inventory.update_item()
@@ -100,6 +103,7 @@ def my_task(selected_task):
         inventory.display_item()
 
     elif selected_task == 4:
+        print("\033c", end="")
         print(Fore.BLUE + Style.BRIGHT + "\n--- Delete an existing Item ---"
               + Style.RESET_ALL)
         print("Please enter the ID of the item to delete ")
@@ -107,11 +111,17 @@ def my_task(selected_task):
             id_to_delete = int(input("Enter ID: ").strip())
             inventory.delete_item(id_to_delete)
         except ValueError:
-            print(Fore.RED + "Invalid ID! Please enter a number.")
-            print(Style.RESET_ALL)
+            print(Fore.RED + "Invalid ID! Please enter a number."
+                  + Style.RESET_ALL)
 
     elif selected_task == 5:
-        print(" Exiting the program .... Goodbye !")
+        print(Fore.CYAN + Style.BRIGHT +
+              "\nThank you for using the Inventory Manager!\n"
+              + Style.RESET_ALL)
+        print(Fore.GREEN + Style.BRIGHT + "\nAll changes saved successfully."
+              + Style.RESET_ALL)
+        print("""System shutdown initiated...
+        Goodbye!""")
         return False
     else:
         print(Fore.RED + "Invalid selection. Please choose 1-5."
