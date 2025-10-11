@@ -35,6 +35,11 @@ class Inventory:
         while True:
             try:
                 value = int(input(prompt).strip())
+                if value < 0:
+                    print(Fore.RED + "Negative numbers are not allowed!"
+                          + Style.RESET_ALL)
+                    print("Please enter a positive number.")
+                    continue
                 return value
             except ValueError:
                 print(Fore.RED + "Invalid input!" + Style.RESET_ALL)

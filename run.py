@@ -54,7 +54,7 @@ def tasks_list():
         [3] Display item
         [4] Delete item
         [5] EXIT\n""" + Style.RESET_ALL)
-        selected_task = input("Select task : ").strip()
+        selected_task = Inventory.get_valid_int("Select task: ")
         print(f"your selection is: {selected_task}")
         go_on = my_task(selected_task)
         if not go_on:
@@ -66,7 +66,7 @@ def my_task(selected_task):
     Task or choice manager,
     each number chosen will excecute the corresponding method
     """
-    if selected_task == "1":
+    if selected_task == 1:
         print("\033c", end="")
         print(Fore.BLUE + Style.BRIGHT + "\n--- Add a New Item ---"
               + Style.RESET_ALL)
@@ -76,16 +76,16 @@ def my_task(selected_task):
             if more != "y":
                 break
 
-    elif selected_task == "2":
+    elif selected_task == 2:
         print(Fore.BLUE + Style.BRIGHT + "\n--- Update an existing Item ---"
               + Style.RESET_ALL)
         inventory.update_item()
 
-    elif selected_task == "3":
+    elif selected_task == 3:
         print("\033c", end="")
         inventory.display_item()
 
-    elif selected_task == "4":
+    elif selected_task == 4:
         print(Fore.BLUE + Style.BRIGHT + "\n--- Delete an existing Item ---"
               + Style.RESET_ALL)
         print("Please enter the ID of the item to delete ")
@@ -96,7 +96,7 @@ def my_task(selected_task):
             print(Fore.RED + "Invalid ID! Please enter a number.")
             print(Style.RESET_ALL)
 
-    elif selected_task == "5":
+    elif selected_task == 5:
         print(" Exiting the program .... Goodbye !")
         return False
     else:
@@ -106,7 +106,9 @@ def my_task(selected_task):
 
 
 """
-This loop Runs only when this file is executed directly
+This loop introduces a main() entry point to ensure the welcome
+message only runs when the script is executed directly,
+improving clarity and structure:
 main() runs once at program start
 task_list() starts the interactive menu
 """
