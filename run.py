@@ -115,7 +115,7 @@ def my_task(selected_task):
                   + Style.RESET_ALL)
 
     elif selected_task == 5:
-        print(Fore.CYAN + Style.BRIGHT +
+        print(Fore.BLUE + Style.BRIGHT +
               "\nThank you for using the Inventory Manager!\n"
               + Style.RESET_ALL)
         print(Fore.GREEN + Style.BRIGHT + "\nAll changes saved successfully."
