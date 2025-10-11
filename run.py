@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from colorama import Fore, Back, Style
 from inventory import Inventory
+from item import Item
 
 
 SCOPE = [
@@ -17,6 +18,24 @@ SHEET = GSPREAD_CLIENT.open('inventory')
 
 my_stock = SHEET.worksheet('stock')
 inventory = Inventory(my_stock)
+
+
+def get_items():
+    # Load existing data from Google Sheet into the local inventory
+    data = my_stock.get_all_values()
+
+    # Skip the header row and ensure each row has enough columns
+    for row in data[1:]:
+        if len(row) >= 4:
+            id = int(row[0])
+            name = row[1]
+            quantity = int(row[2])
+            price = float(row[3])
+            inventory.items.append(Item(id, name, quantity, price))
+
+    print(Fore.GREEN + f"""Loaded {len(inventory.items)} items from
+          Google Sheet.\n""" + Style.RESET_ALL)
+    return data
 
 
 def main():
@@ -108,5 +127,6 @@ main() runs once at program start
 task_list() starts the interactive menu
 """
 if __name__ == "__main__":
+    get_items()
     main()
     tasks_list()
