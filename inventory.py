@@ -1,5 +1,6 @@
 from colorama import Fore, Back, Style
 from item import Item
+import re
 
 
 def check_inventory_not_empty(func):
@@ -66,13 +67,31 @@ class Inventory:
             return id
 
     def get_name(self):
-        """ Checks duplicates: The Item Name must be unique """
+        """
+        Apply diffent checks on name input:
+          -Empty input check
+          -Input must contain at least 3 letters (not just symbols or digits)
+          -The total length (3-15 characters)
+          -Duplicates: The Item Name must be unique
+        """
         while True:
             name = input("Enter item name:").strip()
             # Checks for empty input
             if not name:
-                print(Fore.RED + "Error: Name cannot be empty.")
-                print(Style.RESET_ALL)
+                print(Fore.RED + "Error: Name cannot be empty."
+                      + Style.RESET_ALL)
+                continue
+            # Combined length and letter count check
+            letter_count = len(re.findall(r"[A-Za-z]", name))
+            if len(name) < 3 or len(name) > 15 or letter_count < 3:
+                if len(name) < 3 or len(name) > 15:
+                    print(Fore.RED +
+                          "Error: Name must be between 3 - 15 characters long."
+                          + Style.RESET_ALL)
+                if letter_count < 3:
+                    print(Fore.RED +
+                          "Error: Name must contain at least 3 letters."
+                          + Style.RESET_ALL)
                 continue
             # Checks for duplicates
             if any(item.name.lower() == name.lower() for item in self.items):
