@@ -15,13 +15,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('inventory')
 
-# sales = SHEET.worksheet('sheet')
-# data = sales.get_all_values()
-
-# print(data)
-
-
-inventory = Inventory()
+my_stock = SHEET.worksheet('stock')
+inventory = Inventory(my_stock)
 
 
 def main():

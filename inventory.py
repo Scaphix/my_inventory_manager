@@ -27,7 +27,8 @@ class Inventory:
     Attributes:
         items (list): A list that stores all Item objects in the inventory.
     """
-    def __init__(self):
+    def __init__(self, worksheet):
+        self.worksheet = worksheet
         self.items = []
 
     @staticmethod
@@ -108,7 +109,9 @@ class Inventory:
         price = self.get_valid_float("Enter item price: $")
 
         new_item = Item(id, name, quantity, price)
+        print(new_item)
         self.items.append(new_item)
+        self.save_to_sheet(new_item)
         print(Fore.GREEN + "\n Item added successfully!" + Style.RESET_ALL)
 
     def display_item(self):
@@ -178,3 +181,20 @@ class Inventory:
                 print(Style.RESET_ALL)
                 return
         print(Fore.RED + "Item not found." + Style.RESET_ALL)
+
+    def save_to_sheet(self, item):
+        """
+        Saves a new item to the Google Sheet.
+        """
+        try:
+            self.worksheet.append_row([
+                item.id,
+                item.name,
+                item.quantity,
+                item.price
+            ])
+            print(Fore.GREEN + "Item successfully saved to Google Sheet!"
+                  + Style.RESET_ALL)
+        except Exception as e:
+            print(Fore.RED + f"Error saving to Google Sheet: {e}"
+                  + Style.RESET_ALL)
