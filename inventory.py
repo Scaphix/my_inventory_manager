@@ -53,7 +53,13 @@ class Inventory:
         """Keep asking until a valid float is entered. For Price"""
         while True:
             try:
-                return float(input(prompt))
+                value = float(input(prompt))
+                if value < 0:
+                    print(Fore.RED + "Negative numbers are not allowed!"
+                          + Style.RESET_ALL)
+                    print("Please enter a positive number.")
+                    continue
+                return value
             except ValueError:
                 print(Fore.RED + "Please enter a valid number (e.g. 12.50).")
                 print("e.g. 12.50" + Style.RESET_ALL)
