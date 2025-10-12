@@ -450,6 +450,6 @@ I used the background image from the website below:
 
 - I would like to thank my Code Institute mentors, [Tim Nelson](https://www.github.com/TravelTimN) and [Iuliia Konovalova](https://github.com/IuliiaKonovalova) for their valuable guidance and constructive feedback for this project.
 
-- I would like to express my gratitude to the CI community, and especially to [Kathrinmzl](https://github.com/kathrinmzl), for taking the time to review my project and offer thoughtful, detailed feedback.
+- I would like to thank the CI community, and especially [Kathrinmzl](https://github.com/kathrinmzl), for taking the time to review my project and offer thoughtful, detailed feedback.
 
 - I would like to thank my husband for his kindness, help and unwavering support throughout the development of this project.

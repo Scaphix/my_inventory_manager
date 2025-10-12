@@ -115,6 +115,7 @@ def my_task(selected_task):
                   + Style.RESET_ALL)
 
     elif selected_task == 5:
+        print("\033c", end="")
         print(Fore.BLUE + Style.BRIGHT +
               "\nThank you for using the Inventory Manager!\n"
               + Style.RESET_ALL)
