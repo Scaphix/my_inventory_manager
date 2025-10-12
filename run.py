@@ -67,7 +67,7 @@ def tasks_list():
         print(Fore.BLUE + Style.BRIGHT + """
         [1] Add item
         [2] Update item
-        [3] Display item
+        [3] Display items
         [4] Delete item
         [5] EXIT\n""" + Style.RESET_ALL)
         selected_task = Inventory.get_valid_int("Select task: ")

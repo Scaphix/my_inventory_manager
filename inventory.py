@@ -26,6 +26,7 @@ class Inventory:
 
     Attributes:
         items (list): A list that stores all Item objects in the inventory.
+        worksheet: The Google Sheets worksheet object for data persistence.
     """
     def __init__(self, worksheet):
         self.worksheet = worksheet
