@@ -19,12 +19,12 @@ The Inventory Management Tool is a simple, Python-based command-line application
 **Purpose**
 - Provide users with a simple and effective way to track inventory levels and manage products directly from the terminal.
 - Help small business owners maintain accurate records of their stock, reduce manual errors, and make informed decisions about restocking or pricing.
-- Offer a practical learning experience for understanding how programming concepts can be applied to real-world business problems.
+
 
 **Primary User Needs**
 - Easily add, update, delete, and view items in the inventory.
 - Keep track of product quantities and prices with minimal technical knowledge.
-- Store data safely for later use, with the option to extend the system to save data to a file or connect to Google Sheets.
+- Store data safely in Google Sheets for persistent storage and easy access across sessions.
 - Receive clear and user-friendly feedback through color-coded messages in the terminal.
 
 **Business Goals**
@@ -33,12 +33,6 @@ The Inventory Management Tool is a simple, Python-based command-line application
 - Support better organization and customer satisfaction by ensuring that stock information is always accurate and easy to access.
 
 
-## Wireframes
-
-To follow best practice, a flowchart was created to showcase the progression of the Python app.
-I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker) to design my app flowchart.
-
-![screenshot](documentation/flowchart.png)
 
 ## User Stories
 
@@ -62,18 +56,18 @@ I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker
 | Feature               | Notes                                                                                                                                                                     | Screenshot                                                 |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | Add Item              | Users can add new items with unique ID and name validation. The system ensures no duplicate IDs or names exist and validates quantity (integer) and price (float) inputs. | ![screenshot](document/add-item.png)         |
-| Update Item           | Allows users to modify existing items by ID, updating the name, quantity, and price. Validates all inputs and confirms updates with success messages.                     | ![screenshot](documentation/features/update-item.png)      |
+| Update Item           | Allows users to modify existing items by ID, updating the name, quantity, and price. Validates all inputs and confirms updates with success messages.                     | ![screenshot](document/update_item.png)      |
 | Display Items         | Shows all inventory items in a formatted table sorted by ID, displaying ID, name, quantity, and price in a clear, color-coded layout.                                     | ![screenshot](document/inventory.png)    |
 | Delete Item           | Removes items from inventory by ID with a confirmation prompt (y/n) to prevent accidental deletion. Handles invalid responses gracefully.                                 | ![screenshot](document/delete-item.png)      |
 | Input Validation      | Validates integer inputs (ID, quantity) and float inputs (price) with retry prompts. Ensures data integrity by rejecting invalid entries with clear error messages.       | ![screenshot](document/input-validation.png) |
-| Color-coded Feedback  | Uses colorama to provide visual feedback: green for success, red for errors, yellow for warnings, blue for menu headers, and magenta for section headers.                 | ![screenshot](documentation/features/color-feedback.png)   |
-| Empty Inventory Check | Decorator pattern prevents update and delete operations on empty inventory, displaying a friendly warning message instead.                                                | ![screenshot](documentation/features/empty-check.png)      |
+| Color-coded Feedback  | Uses colorama to provide visual feedback: green for success, red for errors, yellow for warnings, blue for menu headers, and magenta for section headers.                 | ![screenshot](document/color-feedback.png)   |
+| Empty Inventory Check | Decorator pattern prevents update and delete operations on empty inventory, displaying a friendly warning message instead.                                                | ![screenshot](document/empty-check.png)      |
 | Menu System           | Interactive menu-driven interface with 5 options (Add, Update, Display, Delete, Exit) that loops until the user chooses to exit.                                          | ![screenshot](document/menu-system.png)      |
+| Google Sheets Integration | Automatically loads inventory data from Google Sheets on startup and syncs all add, update, and delete operations to maintain persistent storage across sessions.      | ![screenshot](document/google-sheets.png)    |
 
 ### Future Features
 
 - **User Authentication and Role Management**: Implement a login system with roles (e.g., admin, employee) to restrict data access based on user roles.
-- **Data Persistence**: Save inventory data to JSON files or connect to Google Sheets for persistent storage across sessions.
 - **Data Visualization**: Add charts and graphs to visually represent stock levels, value trends, and inventory metrics over time.
 - **Search and Filter**: Implement search functionality to find items by name, ID range, or price range, with filtering options.
 - **Low Stock Alerts**: Notify users when stock levels fall below a defined threshold, prompting restock orders.
@@ -96,16 +90,15 @@ I've used [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker
 | [![badge](https://img.shields.io/badge/VSCode-grey?logo=htmx&logoColor=007ACC)](https://code.visualstudio.com) | Local IDE for development. |
 | [![badge](https://img.shields.io/badge/Python-grey?logo=python&logoColor=3776AB)](https://www.python.org) | Back-end programming language. |
 | [![badge](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://www.heroku.com) | Hosting the deployed back-end site. |
+| [![badge](https://img.shields.io/badge/Google_Sheets-grey?logo=googlesheets&logoColor=34A853)](https://docs.google.com/spreadsheets) | Storing data from my Python app. |
 | [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. |
 | [![badge](https://img.shields.io/badge/Lucidchart-grey?logo=lucid&logoColor=F97B2C)](https://www.lucidchart.com) | Flow diagrams for mapping the app's logic. |
 | [![badge](https://img.shields.io/badge/StackOverflow-grey?logo=stackoverflow&logoColor=F58025)](https://stackoverflow.com) | Troubleshooting and Debugging |
-
 
 ## Database Design
 
 ### Data Model
 
-#### Flowchart
 
 
 #### Classes & Functions
@@ -149,26 +142,28 @@ class Inventory:
 
     The Inventory class acts as a container and controller for all items.
     It allows adding, displaying, updating, and deleting products,
-    as well as saving and loading them (eventually from JSON or Google Sheets).
+    as well as saving and loading them from Google Sheets.
 
     This separation of logic (Inventory vs. Item) makes the program
     easier to maintain and scale.
 
     Attributes:
         items (list): A list that stores all Item objects in the inventory.
+        worksheet: The Google Sheets worksheet object for data persistence.
     """
-    def __init__(self):
+    def __init__(self, worksheet):
+        self.worksheet = worksheet
         self.items = []
 ```
 
 The primary functions used on this application are:
 
 - `add_item()`
-  - Prompts user for item details (ID, name, quantity, price) and adds a new Item object to the inventory list.
+  - Prompts user for item details (ID, name, quantity, price), adds a new Item object to the inventory list, and saves it to Google Sheets.
 - `update_item()`
-  - Allows user to modify an existing item's name, quantity, and price by searching for it by ID.
+  - Allows user to modify an existing item's name, quantity, and price by searching for it by ID, then syncs changes to Google Sheets.
 - `delete_item(id)`
-  - Removes an item from the inventory by ID after user confirmation (y/n prompt).
+  - Removes an item from the inventory by ID after user confirmation (y/n prompt) and deletes it from Google Sheets.
 - `display_item()`
   - Displays all items in a formatted table sorted by ID, showing ID, name, quantity, and price.
 - `get_valid_int(prompt)`
@@ -178,9 +173,17 @@ The primary functions used on this application are:
 - `get_id()`
   - Gets a unique item ID from the user, checking for duplicates in the existing inventory.
 - `get_name()`
-  - Gets a unique item name from the user, checking for duplicates (case-insensitive).
+  - Gets a unique item name from the user with comprehensive validation: checks for empty input, ensures 3-15 characters with at least 3 letters using regex, and prevents duplicates (case-insensitive).
 - `check_inventory_not_empty()`
   - Decorator function that prevents operations on empty inventory and displays a warning.
+- `get_items()`
+  - Loads existing inventory data from Google Sheets into the local inventory on program startup.
+- `save_to_sheet(item)`
+  - Saves a new item to the Google Sheets worksheet.
+- `update_item_in_sheet(item_id, item)`
+  - Updates an existing item in the Google Sheets worksheet by ID.
+- `main()`
+  - Displays the welcome message and program instructions when the application starts.
 - `tasks_list()`
   - Displays the main menu and handles user task selection in a loop until exit.
 - `my_task(selected_task)`
@@ -190,40 +193,13 @@ The primary functions used on this application are:
 
 I've used the following Python packages and external imports.
 
+- `gspread`: used for connecting to and interacting with Google Sheets API
+- `google.oauth2.service_account`: used for authenticating with Google Sheets using service account credentials
 - `colorama`: used for including color in the terminal (Fore, Back, Style)
+- `re`: used for regex pattern matching in name validation
 - `item`: local module containing the Item class definition
 - `inventory`: local module containing the Inventory class and inventory management logic
 
-## Agile Development Process
-
-### GitHub Projects
-
-
-[GitHub Projects](https://www.github.com/Scaphix/my_inventory_manager/projects) served as an Agile tool for this project. Through it, EPICs, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
-
-
-### Must Have (MVP)
-- [As a user, I want to search for a title so that I can find relevant information.](https://github.com/larevolucia/reeltracker_cli/issues/3)
-
-![screenshot](documentation/gh-projects.png)
-
-### GitHub Issues
-
-[GitHub Issues](https://www.github.com/Scaphix/my_inventory_manager/issues) served as an another Agile tool. There, I managed my User Stories and Milestone tasks, and tracked any issues/bugs.
-
-| Link | Screenshot |
-| --- | --- |
-| [![GitHub issues](https://img.shields.io/github/issues-search/Scaphix/my_inventory_manager?query=is%3Aissue%20is%3Aopen%20-label%3Abug&label=Open%20Issues&color=yellow)](https://www.github.com/Scaphix/my_inventory_manager/issues?q=is%3Aissue%20is%3Aopen%20-label%3Abug) | ![screenshot](documentation/gh-issues-open.png) |
-| [![GitHub closed issues](https://img.shields.io/github/issues-search/Scaphix/my_inventory_manager?query=is%3Aissue%20is%3Aclosed%20-label%3Abug&label=Closed%20Issues&color=green)](https://www.github.com/Scaphix/my_inventory_manager/issues?q=is%3Aissue%20is%3Aclosed%20-label%3Abug) | ![screenshot](documentation/gh-issues-closed.png) |
-
-### MoSCoW Prioritization
-
-I've decomposed my Epics into User Stories for prioritizing and implementing them. Using this approach, I was able to apply "MoSCoW" prioritization and labels to my User Stories within the Issues tab.
-
-- **Must Have**: guaranteed to be delivered - required to Pass the project (*max ~60% of stories*)
-- **Should Have**: adds significant value, but not vital (*~20% of stories*)
-- **Could Have**: has small impact if left out (*the rest ~20% of stories*)
-- **Won't Have**: not a priority for this iteration - future features
 
 ## Testing
 
@@ -335,7 +311,7 @@ Heroku needs some additional files in order to deploy properly.
 
 - [requirements.txt](requirements.txt)
 - [Procfile](Procfile)
-- [.python-version](.python-version)
+- [runtime.txt](runtime.txt)
 
 You can install this project's **[requirements.txt](requirements.txt)** (*where applicable*) using:
 
@@ -349,9 +325,9 @@ The **[Procfile](Procfile)** can be created with the following command:
 
 - `echo web: node index.js > Procfile`
 
-The **[.python-version](.python-version)** file tells Heroku the specific version of Python to use when running your application.
+The **[runtime.txt](runtime.txt)** file tells Heroku the specific version of Python to use when running your application.
 
-- `3.12` (or similar)
+- `python-3.12.2` (or similar)
 
 For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
 
@@ -368,7 +344,43 @@ Or:
 
 The Python terminal window should now be connected and deployed to Heroku!
 
+### Google Sheets API
 
+This application uses [Google Sheets](https://docs.google.com/spreadsheets) to handle a "makeshift" database on the live site.
+
+To run your own version of this application, you will need to create your own Google Sheet with one sheet named `stock` in the following format:
+
+| ID | Name | Quantity | Price | 
+| --- | --- | --- | --- | 
+| sample data | sample data | sample data | sample data |
+| sample data | sample data | sample data | sample data | 
+| sample data | sample data | sample data | sample data | 
+
+A credentials file in `.JSON` format from the Google Cloud Platform is also mandatory:
+
+[Google Cloud Platform](https://console.cloud.google.com)
+
+1. From the dashboard click on "Select a project", and then the **NEW PROJECT** button.
+2. Give the project a name, and then click **CREATE**.
+3. Click **SELECT PROJECT** to get to the project page.
+4. From the side-menu, select "APIs & Services", then select "Library".
+5. Search for the "Google Drive API", select it, and then click on **ENABLE**.
+6. Click on the **CREATE CREDENTIALS** button.
+7. From the "Which API are you using?" dropdown menu, choose **Google Drive API**.
+8. For the "What data will you be accessing?" question, select **Application Data**.
+9. Click **Next**.
+10. Enter a "Service Account" name, then click **Create**.
+11. In the "Role" dropdown box, choose "Basic" > "Editor", then press **Continue**.
+12. "Grant users access to this service account" can be left blank. Click **DONE**.
+13. On the next page, click on the "Service Account" that has been created.
+14. On the next page, click on the "Keys" tab.
+15. Click on the "Add Key" dropdown, and select "Create New Key".
+16. Select `JSON`, and then click **Create**. This will trigger the `.json` file with your API credentials in it to download to your machine locally.
+17. For local deployment, this needs to be renamed to `creds.json`.
+18. Repeat steps 4 & 5 above to add the "Google Sheets API".
+19. Copy the `client_email` that is in the `creds.json` file.
+20. Share your Google Sheet to the `client_email`, ensuring "Editing" is enabled.
+21. Add the `creds.json` file to your `.gitignore` file, so as not to push your credentials to GitHub publicly.
 
 ### Local Development
 
@@ -380,20 +392,24 @@ For either method, you will need to install any applicable packages found within
 
 If using any confidential credentials, such as `CREDS.json` or `env.py` data, these will need to be manually added to your own newly created project as well.
 
-#### Cloning
 
-You can clone the repository by following these steps:
+#### How to Clone a repository
 
-1. Go to the [GitHub repository](https://www.github.com/Scaphix/my_inventory_manager).
+1. On GitHub, go to the repository for this project, [GitHub repository](https://www.github.com/Scaphix/my_inventory_manager).
 2. Locate and click on the green "Code" button at the very top, above the commits and files.
-3. Select whether you prefer to clone using "HTTPS", "SSH", or "GitHub CLI", and click the "copy" button to copy the URL to your clipboard.
-4. Open "Git Bash" or "Terminal".
+3. Copy the URL for the repository.
+
+    - To clone the repository using HTTPS, under "HTTPS", click the copy button.
+    - To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click the copy button.
+    - To clone a repository using GitHub CLI, click GitHub CLI, then click the copy button.
+
+4. Open Terminal.
 5. Change the current working directory to the location where you want the cloned directory.
 6. In your IDE Terminal, type the following command to clone the repository:
 	- `git clone https://www.github.com/Scaphix/my_inventory_manager.git`
-7. Press "Enter" to create your local clone.
+7. Press Enter. Your local clone will be created.
 
-
+![](document/clone-repo.png)
 
 #### Forking
 
@@ -401,7 +417,11 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 
 1. Log in to GitHub and locate the [GitHub Repository](https://www.github.com/Scaphix/my_inventory_manager).
 2. At the top of the Repository, just below the "Settings" button on the menu, locate and click the "Fork" Button.
-3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
+
+![](document/fork-repo.png)
+
+3. Select the dropdown menu and click on owner for the forked repository.
+4. Click Create fork.
 
 
 ## Credits
@@ -413,29 +433,23 @@ By forking the GitHub Repository, you make a copy of the original repository on 
 | Source | Notes |
 | --- | --- |
 | [Markdown Builder](https://markdown.2bn.dev) | Help generating Markdown files |
-| [Chris Beams](https://chris.beams.io/posts/git-commit) | "How to Write a Git Commit Message" |
 | [Love Sandwiches](https://codeinstitute.net) | Code Institute walkthrough project inspiration |
-| [Real Python](https://realpython.com/python-quiz-application) | Inspiration for a quiz app |
-| [BroCode](https://www.youtube.com/watch?v=ag8NtD1e0Kc) | Inspiration for hangman game |
 | [Python Tutor](https://pythontutor.com) | Additional Python help |
 | [Colorama](https://www.youtube.com/watch?v=u51Zjlnui4Y) | Adding color in Python |
 | [StackOverflow](https://stackoverflow.com/a/50921841) | Clear screen in Python |
 | [ChatGPT](https://chatgpt.com) | Help with code logic and explanations |
 
-### Photo
+### Media
+
+I used the background image from the website below:
 
 [Layout image](https://www.veeqo.com/gb/blog/inventory-shrinkage)
 
-### Media
-
-| Source | Notes |
-| --- | --- |
-| [ASCII Art Archive](https://www.asciiart.eu) | Pre-defined ASCII art |
-| [TEXT-IMAGE](https://www.text-image.com) | Converting an image to ASCII art |
-| [Patorjk](https://patorjk.com/software/taag) | Converting text to ASCII art |
 
 ### Acknowledgements
 
-- I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
-- I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues.
-- I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
+- I would like to thank my Code Institute mentors, [Tim Nelson](https://www.github.com/TravelTimN) and [Iuliia Konovalova](https://github.com/IuliiaKonovalova) for their valuable guidance and constructive feedback for this project.
+
+- I would like to express my gratitude to the CI community, and especially to [Kathrinmzl](https://github.com/kathrinmzl), for taking the time to review my project and offer thoughtful, detailed feedback.
+
+- I would like to thank my husband for his kindness, help and unwavering support throughout the development of this project.
